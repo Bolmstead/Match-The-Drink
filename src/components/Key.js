@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../App";
 
 function Key({ keyVal, bigKey, disabled }) {
+  const [guessed, setGuessed] = useState(false);
   const { gameOver, onSelectLetter, onDelete, onEnter } =
     useContext(AppContext);
 
@@ -18,8 +19,10 @@ function Key({ keyVal, bigKey, disabled }) {
   return (
     <div
       className="key"
-      id={bigKey ? "big" : disabled && "disabled"}
+      id={bigKey ? "big" : guessed && "disabled"}
       onClick={selectLetter}
+      disabled={guessed}
+      style={{ pointerEvents: guessed ? "none" : "auto" }}
     >
       {keyVal}
     </div>

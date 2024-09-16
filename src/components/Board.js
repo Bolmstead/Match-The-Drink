@@ -3,6 +3,8 @@ import { AppContext } from "../App";
 import Letter from "./Letter";
 
 function Board() {
+  const { numDrinksCorrectArray } = useContext(AppContext);
+
   return (
     <div className="board">
       {" "}

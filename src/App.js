@@ -4,6 +4,7 @@ import Keyboard from "./components/Keyboard";
 import { boardDefault, generateWordSet } from "./Words";
 import React, { useState, createContext, useEffect } from "react";
 import GameOver from "./components/GameOver";
+import PopupNumber from "./components/NumberPopup";
 
 export const AppContext = createContext();
 
@@ -11,43 +12,57 @@ function App() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letter: 0 });
   const [wordSet, setWordSet] = useState(new Set());
-  const [correctWord, setCorrectWord] = useState("");
+  const [correctDrinkOrder, setCorrectDrinkOrder] = useState("");
   const [disabledLetters, setDisabledLetters] = useState([]);
+  const [numDrinksCorrectArray, setNumDrinksCorrectArray] = useState([]);
+  const [alert, setAlert] = useState({ show: false, numRight: 0 });
+
   const [gameOver, setGameOver] = useState({
     gameOver: false,
     guessedWord: false,
   });
 
-  return <div></div>;
-
   useEffect(() => {
-    generateWordSet().then((words) => {
-      setWordSet(words.wordSet);
-      setCorrectWord(words.todaysWord);
+    generateWordSet().then((todaysDrinkOrder) => {
+      setCorrectDrinkOrder(todaysDrinkOrder);
     });
   }, []);
 
+  useEffect(() => {
+    console.log("correctDrinkOrder:: ", correctDrinkOrder);
+  }, [correctDrinkOrder]);
+
+  useEffect(() => {
+    console.log("currAttempt:: ", currAttempt);
+  }, [currAttempt]);
+
   const onEnter = () => {
+    let submittedAttempt = board[currAttempt.attempt];
+    let numDrinksCorrect = 0;
+
+    console.log("submittedAttempt:: ", submittedAttempt);
+    console.log("correctDrinkOrder:: ", correctDrinkOrder);
     if (currAttempt.letter !== 5) return;
 
-    let currWord = "";
     for (let i = 0; i < 5; i++) {
-      currWord += board[currAttempt.attempt][i];
+      if (submittedAttempt[i].key === correctDrinkOrder[i].key) {
+        console.log("got a drink right!:: ", i);
+        numDrinksCorrect++;
+        continue;
+      } else {
+        console.log("not correct answer");
+      }
     }
-    if (wordSet.has(currWord.toLowerCase())) {
-      setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
-    } else {
-      alert("Word not found");
-    }
+    console.log("numDrinksCorrect:: ", numDrinksCorrect);
+    setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
+    const tempNumDrinksCorrectArray = [...numDrinksCorrectArray];
 
-    if (currWord === correctWord) {
-      setGameOver({ gameOver: true, guessedWord: true });
-      return;
-    }
-    console.log(currAttempt);
-    if (currAttempt.attempt === 5) {
-      setGameOver({ gameOver: true, guessedWord: false });
-      return;
+    setNumDrinksCorrectArray([...tempNumDrinksCorrectArray, numDrinksCorrect]);
+
+    if (currAttempt.attempt > 4) {
+      setGameOver({ gameOver: true, guessedWord: numDrinksCorrect === 5 });
+    } else {
+      setAlert({ show: true, numRight: numDrinksCorrect });
     }
   };
 
@@ -60,8 +75,29 @@ function App() {
   };
 
   const onSelectLetter = (key) => {
+    setAlert(false);
+
+    console.log("key:: ", key);
+
+    console.log("currAttempt:: ", currAttempt);
+    let alreadyGuessed = false;
+
     if (currAttempt.letter > 4) return;
     const newBoard = [...board];
+    console.log(
+      "newBoard[currAttempt.attempt]:: ",
+      newBoard[currAttempt.attempt]
+    );
+
+    for (let guessedDrink of newBoard[currAttempt.attempt]) {
+      if (guessedDrink.key === key.key) {
+        alreadyGuessed = true;
+      }
+    }
+    if (alreadyGuessed) {
+      return;
+    }
+    console.log("🚀 ~ onSelectLetter ~ newBoard:", newBoard);
     newBoard[currAttempt.attempt][currAttempt.letter] = key;
     setBoard(newBoard);
     setCurrAttempt({
@@ -73,7 +109,7 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <h1>Wordle</h1>
+        <h1>Match The Drink</h1>
       </nav>
       <AppContext.Provider
         value={{
@@ -81,16 +117,18 @@ function App() {
           setBoard,
           currAttempt,
           setCurrAttempt,
-          correctWord,
+          correctDrinkOrder,
           onSelectLetter,
           onDelete,
           onEnter,
           setDisabledLetters,
           disabledLetters,
           gameOver,
+          numDrinksCorrectArray,
         }}
       >
         <div className="game">
+          {alert.show && <PopupNumber number={alert.numRight}></PopupNumber>}
           <Board />
           {gameOver.gameOver ? <GameOver /> : <Keyboard />}
         </div>
