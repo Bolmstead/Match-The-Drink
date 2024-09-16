@@ -8,11 +8,15 @@ import SportsBarIcon from "@mui/icons-material/SportsBar";
 import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
 function Keyboard() {
   const iconArray = [
-    <CoffeeIcon key="coffee" sx={{ color: "#967259" }} />,
-    <EmojiFoodBeverageIcon key="tea" sx={{ color: "green" }} />,
-    <WineBarIcon key="wine" sx={{ color: "#EE4B2B" }} />,
-    <SportsBarIcon key="beer" sx={{ color: "#FBB117" }} />,
-    <LocalDrinkIcon key="water" sx={{ color: "#57b9ff" }} />,
+    <CoffeeIcon fontSize="large" key="coffee" sx={{ color: "#967259" }} />,
+    <EmojiFoodBeverageIcon
+      fontSize="large"
+      key="tea"
+      sx={{ color: "green" }}
+    />,
+    <WineBarIcon fontSize="large" key="wine" sx={{ color: "#EE4B2B" }} />,
+    <SportsBarIcon fontSize="large" key="beer" sx={{ color: "#FBB117" }} />,
+    <LocalDrinkIcon fontSize="large" key="water" sx={{ color: "#57b9ff" }} />,
   ];
 
   const {

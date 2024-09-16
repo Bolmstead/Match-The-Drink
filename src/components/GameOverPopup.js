@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../App";
 import Button from "@mui/material/Button";
+import Key from "./Key";
 
 const GameOverPopup = () => {
-  const { gameOver, newGame } = useContext(AppContext);
+  const { gameOver, correctDrinkOrder } = useContext(AppContext);
 
   const [isVisible, setIsVisible] = useState(true);
   const [opacity, setOpacity] = useState(1);
@@ -22,7 +23,7 @@ const GameOverPopup = () => {
         left: 0,
         width: "100vw",
         height: "100vh",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -33,18 +34,31 @@ const GameOverPopup = () => {
     >
       <div
         style={{
-          fontSize: "7rem",
+          fontSize: "6rem",
           color: "white",
           fontWeight: "bold",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
         }}
       >
-        {gameOver.won ? "You Won! 🎉" : "You Lost! 👎"}
-        <br />
+        {" "}
+        <span style={{ marginBottom: "30px" }}>
+          {" "}
+          {gameOver.won ? "You Won! 🎉" : "You Lost!"}
+        </span>
+        <span style={{ fontSize: "35px" }}>Correct Order:</span>
+        <div className="winning-order">{correctDrinkOrder}</div>
         <Button
           variant="contained"
           onClick={refreshPage}
           size="large"
-          style={{ backgroundColor: "white", color: "black" }}
+          style={{
+            backgroundColor: "white",
+            color: "black",
+            marginTop: "30px",
+          }}
         >
           Retry?
         </Button>

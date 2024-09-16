@@ -2,11 +2,18 @@ import React, { useState, useEffect } from "react";
 
 const PopupNumber = ({
   number,
-  displayDuration = 1500,
+  displayDuration = 2000,
   fadeDuration = 1000,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [opacity, setOpacity] = useState(1);
+
+  const emojiObject = {
+    0: "💩",
+    1: "🙂",
+    2: "🔥",
+    3: "🤯",
+  };
 
   useEffect(() => {
     // Start fade out just before the end of display duration
@@ -36,7 +43,7 @@ const PopupNumber = ({
         left: 0,
         width: "100vw",
         height: "100vh",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -53,7 +60,7 @@ const PopupNumber = ({
           fontWeight: "bold",
         }}
       >
-        {number}
+        {number} {number === 0 ? "😔" : "✅"}
       </div>
     </div>
   );

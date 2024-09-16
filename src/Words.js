@@ -4,11 +4,11 @@ import WineBarIcon from "@mui/icons-material/WineBar";
 import SportsBarIcon from "@mui/icons-material/SportsBar";
 import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
 const iconArray = [
-  <CoffeeIcon key="coffee" sx={{ color: "tan" }} />,
-  <EmojiFoodBeverageIcon key="tea" sx={{ color: "green" }} />,
-  <WineBarIcon key="wine" sx={{ color: "red" }} />,
-  <SportsBarIcon key="beer" sx={{ color: "brown" }} />,
-  <LocalDrinkIcon key="water" sx={{ color: "light blue" }} />,
+  <CoffeeIcon key="coffee" sx={{ fontSize: "70px", color: "#967259" }} />,
+  <EmojiFoodBeverageIcon key="tea" sx={{ fontSize: "70px", color: "green" }} />,
+  <WineBarIcon key="wine" sx={{ fontSize: "70px", color: "#EE4B2B" }} />,
+  <SportsBarIcon key="beer" sx={{ fontSize: "70px", color: "#FBB117" }} />,
+  <LocalDrinkIcon key="water" sx={{ fontSize: "70px", color: "#57b9ff" }} />,
 ];
 
 export const boardDefault = [

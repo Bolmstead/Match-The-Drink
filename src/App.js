@@ -5,6 +5,7 @@ import { boardDefault, generateWordSet } from "./Words";
 import React, { useState, createContext, useEffect } from "react";
 import GameOverPopup from "./components/GameOverPopup";
 import PopupNumber from "./components/NumberPopup";
+import NavigationBar from "./components/NavigationBar";
 
 export const AppContext = createContext();
 
@@ -125,9 +126,7 @@ function App() {
 
   return (
     <div className="App">
-      <nav>
-        <h1>Match The Drink</h1>
-      </nav>
+      <NavigationBar></NavigationBar>
       <AppContext.Provider
         value={{
           board,
@@ -148,7 +147,8 @@ function App() {
         <div className="game">
           {alert.show && <PopupNumber number={alert.numRight}></PopupNumber>}
           <Board />
-          {gameOver.gameOver ? <GameOverPopup /> : <Keyboard />}
+          <Keyboard />
+          {gameOver.gameOver && <GameOverPopup />}
         </div>
       </AppContext.Provider>
     </div>
