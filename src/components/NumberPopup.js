@@ -55,12 +55,12 @@ const PopupNumber = ({
     >
       <div
         style={{
-          fontSize: "10rem",
+          fontSize: "9rem",
           color: "white",
           fontWeight: "bold",
         }}
       >
-        {number} {number === 0 ? "😔" : "✅"}
+        {number} {number === 0 ? "❌" : "✅"}
       </div>
     </div>
   );

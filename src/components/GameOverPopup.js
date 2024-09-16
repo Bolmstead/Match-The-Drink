@@ -23,7 +23,7 @@ const GameOverPopup = () => {
         left: 0,
         width: "100vw",
         height: "100vh",
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
