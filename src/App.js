@@ -3,7 +3,7 @@ import Board from "./components/Board";
 import Keyboard from "./components/Keyboard";
 import { boardDefault, generateWordSet } from "./Words";
 import React, { useState, createContext, useEffect } from "react";
-import GameOver from "./components/GameOver";
+import GameOverPopup from "./components/GameOverPopup";
 import PopupNumber from "./components/NumberPopup";
 
 export const AppContext = createContext();
@@ -19,7 +19,7 @@ function App() {
 
   const [gameOver, setGameOver] = useState({
     gameOver: false,
-    guessedWord: false,
+    won: false,
   });
 
   useEffect(() => {
@@ -59,8 +59,10 @@ function App() {
 
     setNumDrinksCorrectArray([...tempNumDrinksCorrectArray, numDrinksCorrect]);
 
-    if (currAttempt.attempt > 4) {
-      setGameOver({ gameOver: true, guessedWord: numDrinksCorrect === 5 });
+    if (numDrinksCorrect === 5) {
+      setGameOver({ gameOver: true, won: true });
+    } else if (currAttempt.attempt > 4) {
+      setGameOver({ gameOver: true, won: false });
     } else {
       setAlert({ show: true, numRight: numDrinksCorrect });
     }
@@ -72,6 +74,21 @@ function App() {
     newBoard[currAttempt.attempt][currAttempt.letter - 1] = "";
     setBoard(newBoard);
     setCurrAttempt({ ...currAttempt, letter: currAttempt.letter - 1 });
+  };
+
+  const newGame = () => {
+    setBoard(boardDefault);
+    setCurrAttempt({ attempt: 0, letter: 0 });
+    setWordSet(new Set());
+    setCorrectDrinkOrder("");
+    setDisabledLetters([]);
+    setNumDrinksCorrectArray([]);
+    setAlert({ show: false, numRight: 0 });
+
+    setGameOver({
+      gameOver: false,
+      won: false,
+    });
   };
 
   const onSelectLetter = (key) => {
@@ -125,12 +142,13 @@ function App() {
           disabledLetters,
           gameOver,
           numDrinksCorrectArray,
+          newGame,
         }}
       >
         <div className="game">
           {alert.show && <PopupNumber number={alert.numRight}></PopupNumber>}
           <Board />
-          {gameOver.gameOver ? <GameOver /> : <Keyboard />}
+          {gameOver.gameOver ? <GameOverPopup /> : <Keyboard />}
         </div>
       </AppContext.Provider>
     </div>
