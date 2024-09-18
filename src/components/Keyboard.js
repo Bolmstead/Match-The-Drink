@@ -6,7 +6,18 @@ import EmojiFoodBeverageIcon from "@mui/icons-material/EmojiFoodBeverage";
 import WineBarIcon from "@mui/icons-material/WineBar";
 import SportsBarIcon from "@mui/icons-material/SportsBar";
 import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
+import BackspaceIcon from "@mui/icons-material/Backspace";
+import Button from "@mui/material/Button";
+
 function Keyboard() {
+  const {
+    disabledLetters,
+    currAttempt,
+    gameOver,
+    onSelectLetter,
+    onEnter,
+    onDelete,
+  } = useContext(AppContext);
   const iconArray = [
     <CoffeeIcon fontSize="large" key="coffee" sx={{ color: "#967259" }} />,
     <EmojiFoodBeverageIcon
@@ -19,14 +30,27 @@ function Keyboard() {
     <LocalDrinkIcon fontSize="large" key="water" sx={{ color: "#57b9ff" }} />,
   ];
 
-  const {
-    disabledLetters,
-    currAttempt,
-    gameOver,
-    onSelectLetter,
-    onEnter,
-    onDelete,
-  } = useContext(AppContext);
+  const backspaceKey = (
+    <BackspaceIcon
+      fontSize="large"
+      key="backspace"
+      sx={{ color: currAttempt.letter === 0 ? "#3b3b3b" : "white" }}
+    />
+  );
+
+  const submitKey = (
+    <Button
+      key="submit"
+      variant="contained"
+      sx={{
+        color: "black",
+        backgroundColor: currAttempt.letter > 4 ? "#4BB543" : "#3b3b3b",
+        fontFamily: "Poppins",
+      }}
+    >
+      Submit
+    </Button>
+  );
 
   const handleKeyboard = useCallback(
     (event) => {
@@ -57,14 +81,14 @@ function Keyboard() {
     <div className="keyboard" onKeyDown={handleKeyboard}>
       <div className="line1">
         {iconArray.map((key) => {
-          return <Key keyVal={key} disabled={disabledLetters.includes(key)} />;
+          return <Key keyVal={key} disabled={true} />;
         })}
       </div>
 
       <div className="line3">
-        <Key keyVal={"ENTER"} bigKey />
+        <Key keyVal={backspaceKey} bigKey />
 
-        <Key keyVal={"DELETE"} bigKey />
+        <Key keyVal={submitKey} bigKey />
       </div>
     </div>
   );

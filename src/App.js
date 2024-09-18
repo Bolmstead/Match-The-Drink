@@ -150,6 +150,7 @@ function App() {
           <Keyboard />
           {gameOver.gameOver && <GameOverPopup />}
         </div>
+        
       </AppContext.Provider>
     </div>
   );

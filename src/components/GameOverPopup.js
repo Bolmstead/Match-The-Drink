@@ -29,7 +29,7 @@ const GameOverPopup = () => {
         alignItems: "center",
         zIndex: 9999,
         opacity: opacity,
-        fontFamily: "Roboto",
+        fontFamily: "Poppins",
       }}
     >
       <div
@@ -55,9 +55,13 @@ const GameOverPopup = () => {
           onClick={refreshPage}
           size="large"
           style={{
-            backgroundColor: "white",
+            backgroundColor: "#57b9ff",
             color: "black",
             marginTop: "30px",
+            fontFamily: "poppins",
+            fontSize: "20px",
+            paddingLeft: "30px",
+            paddingRight: "30px",
           }}
         >
           Retry?

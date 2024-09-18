@@ -11,7 +11,7 @@ function Letter({ letterPos, attemptVal }) {
     }
   }, [currAttempt.attempt]);
   return (
-    <div className="letter" id={"error"}>
+    <div className="letter" id={"tile"}>
       {letter}
     </div>
   );

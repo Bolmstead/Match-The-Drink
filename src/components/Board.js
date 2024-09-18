@@ -7,10 +7,10 @@ function Board() {
   console.log("🚀 ~ Board ~ numDrinksCorrectArray:", numDrinksCorrectArray);
 
   return (
-    <div className="board">
+    <div className="board" style={{ fontFamily: "Poppins" }}>
       {" "}
       <div className="row">
-        <div className="number-right">{numDrinksCorrectArray[0]}</div>
+        <div className="number-right"></div>
 
         <Letter letterPos={0} attemptVal={0} />
         <Letter letterPos={1} attemptVal={0} />
@@ -20,7 +20,7 @@ function Board() {
         <div className="number-right">{numDrinksCorrectArray[0]}</div>
       </div>
       <div className="row">
-        <div className="number-right">{numDrinksCorrectArray[1]}</div>
+        <div className="number-right"></div>
 
         <Letter letterPos={0} attemptVal={1} />
         <Letter letterPos={1} attemptVal={1} />
@@ -30,7 +30,7 @@ function Board() {
         <div className="number-right">{numDrinksCorrectArray[1]}</div>
       </div>
       <div className="row">
-        <div className="number-right">{numDrinksCorrectArray[2]}</div>
+        <div className="number-right"></div>
 
         <Letter letterPos={0} attemptVal={2} />
         <Letter letterPos={1} attemptVal={2} />
@@ -40,7 +40,7 @@ function Board() {
         <div className="number-right">{numDrinksCorrectArray[2]}</div>
       </div>
       <div className="row">
-        <div className="number-right">{numDrinksCorrectArray[3]}</div>
+        <div className="number-right"></div>
 
         <Letter letterPos={0} attemptVal={3} />
         <Letter letterPos={1} attemptVal={3} />
@@ -50,7 +50,7 @@ function Board() {
         <div className="number-right">{numDrinksCorrectArray[3]}</div>
       </div>
       <div className="row">
-        <div className="number-right">{numDrinksCorrectArray[4]}</div>
+        <div className="number-right"></div>
 
         <Letter letterPos={0} attemptVal={4} />
         <Letter letterPos={1} attemptVal={4} />
@@ -60,7 +60,7 @@ function Board() {
         <div className="number-right">{numDrinksCorrectArray[4]}</div>
       </div>
       <div className="row">
-        <div className="number-right">{numDrinksCorrectArray[5]}</div>
+        <div className="number-right"></div>
 
         <Letter letterPos={0} attemptVal={5} />
         <Letter letterPos={1} attemptVal={5} />

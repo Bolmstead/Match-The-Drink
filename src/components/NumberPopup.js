@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 
 const PopupNumber = ({
   number,
@@ -50,7 +51,7 @@ const PopupNumber = ({
         zIndex: 9999,
         transition: `opacity ${fadeDuration}ms ease-in-out`,
         opacity: opacity,
-        fontFamily: "Roboto",
+        fontFamily: "Poppins",
       }}
     >
       <div
@@ -58,9 +59,20 @@ const PopupNumber = ({
           fontSize: "9rem",
           color: "white",
           fontWeight: "bold",
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
         }}
       >
-        {number} {number === 0 ? "❌" : "✅"}
+        {number}{" "}
+        {number === 0 ? (
+          <div sx={{ marginLeft: "5px" }}>❌</div>
+        ) : (
+          <CheckCircleOutlinedIcon
+            fontSize="large"
+            sx={{ color: "#4BB543", fontSize: "9rem", marginLeft: "5px" }}
+          />
+        )}
       </div>
     </div>
   );

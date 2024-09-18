@@ -1,15 +1,36 @@
 import * as React from "react";
+import Popover from "@mui/material/Popover";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid2";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import SportsBarIcon from "@mui/icons-material/SportsBar";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "#3b3b3b",
+  color: "white",
+  boxShadow: 24,
+  p: 4,
+  fontFamily: "Poppins",
+};
 
 export default function NavigationBar() {
+  const [openHelpModal, setOpenHelpModal] = React.useState(false);
+  const handleOpen = () => setOpenHelpModal(true);
+  const handleClose = () => setOpenHelpModal(false);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ backgroundColor: "#121212" }}>
@@ -31,7 +52,7 @@ export default function NavigationBar() {
               spacing={2}
             >
               <Grid
-                size={4}
+                size={2}
                 style={{
                   display: "flex",
                   height: "100%",
@@ -44,8 +65,13 @@ export default function NavigationBar() {
                   color="inherit"
                   aria-label="menu"
                   sx={{ mr: 2 }}
+                  onClick={handleOpen}
                 >
-                  <MenuIcon style={{ marginRight: "20px" }} />
+                  <HelpOutlineIcon
+                    aria-describedby="help"
+                    style={{ color: "grey" }}
+                    onClick={handleOpen}
+                  />
                 </IconButton>{" "}
               </Grid>
               <Grid
@@ -54,14 +80,19 @@ export default function NavigationBar() {
                   height: "100%",
                   alignItems: "center",
                 }}
-                size={4}
+                size={8}
               >
-                <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+                <Typography
+                  variant="h4"
+                  component="div"
+                  style={{ fontFamily: "poppins" }}
+                  sx={{ flexGrow: 1 }}
+                >
                   Match The Drink
                 </Typography>{" "}
               </Grid>
               <Grid
-                size={4}
+                size={2}
                 style={{
                   display: "flex",
                   height: "100%",
@@ -69,23 +100,79 @@ export default function NavigationBar() {
                   justifyContent: "end",
                 }}
               >
-                <a
-                  className="buyButton"
-                  target="_blank"
-                  href="https://buymeacoffee.com/berkley"
-                >
-                  <img
-                    className="coffeeImage"
-                    src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"
-                    alt="Buy me a coffee"
-                  />
-                  <span className="coffeeButtonText">Buy me a coffee</span>
-                </a>{" "}
+                <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                  <a
+                    className="buyButton"
+                    target="_blank"
+                    href="https://buymeacoffee.com/berkley"
+                  >
+                    <img
+                      className="coffeeImage"
+                      src="/buyCoffee.png"
+                      alt="Buy me a coffee"
+                    />
+                  </a>{" "}
+                </Box>
+                <Box sx={{ display: { xs: "block", sm: "none" } }}>
+                  <a
+                    className="buyButton"
+                    target="_blank"
+                    href="https://buymeacoffee.com/berkley"
+                  >
+                    <img
+                      className="coffeeImage"
+                      src="/buyCoffeeSmall.png"
+                      alt="Buy me a coffee"
+                    />
+                  </a>{" "}
+                </Box>
               </Grid>
             </Grid>
           </div>
         </Container>
       </AppBar>
+      <div>
+        <Modal
+          open={openHelpModal}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              sx={{ fontFamily: "Poppins" }}
+              component="h2"
+            >
+              How to Play
+            </Typography>
+            <Typography
+              id="modal-modal-description"
+              sx={{
+                mt: 2,
+                fontFamily: "Poppins",
+              }}
+            >
+              <span>
+                Try to guess the correct drink order! After each guess, you will
+                be given the number of drinks that are in the correct spot. Use
+                this to help figure out the correct order. <br />
+                <br />
+                Cheers!{" "}
+                <SportsBarIcon
+                  key="beer"
+                  sx={{
+                    fontSize: "20px",
+                    color: "#FBB117",
+                    verticalAlign: "top",
+                  }}
+                />
+              </span>
+            </Typography>
+          </Box>
+        </Modal>
+      </div>
     </Box>
   );
 }
