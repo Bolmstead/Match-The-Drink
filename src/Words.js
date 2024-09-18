@@ -30,6 +30,5 @@ function mixDrinks(array) {
 
 export const generateWordSet = async () => {
   const todaysDrinkOrder = mixDrinks(iconArray);
-  console.log("🚀 ~ generateWordSet ~ todaysDrinkOrder:", todaysDrinkOrder);
   return todaysDrinkOrder;
 };

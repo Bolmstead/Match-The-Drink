@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../App";
 import Button from "@mui/material/Button";
-import Key from "./Key";
-import CelebrationIcon from "@mui/icons-material/Celebration";
 
 const GameOverPopup = () => {
   const { gameOver, correctDrinkOrder } = useContext(AppContext);

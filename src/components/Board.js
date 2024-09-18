@@ -4,14 +4,12 @@ import Letter from "./Letter";
 
 function Board() {
   const { numDrinksCorrectArray } = useContext(AppContext);
-  console.log("🚀 ~ Board ~ numDrinksCorrectArray:", numDrinksCorrectArray);
 
   return (
     <div className="board" style={{ fontFamily: "Poppins" }}>
       {" "}
       <div className="row">
         <div className="number-right"></div>
-
         <Letter letterPos={0} attemptVal={0} />
         <Letter letterPos={1} attemptVal={0} />
         <Letter letterPos={2} attemptVal={0} />
