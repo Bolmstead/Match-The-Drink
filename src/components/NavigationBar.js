@@ -42,6 +42,7 @@ export default function NavigationBar() {
               alignItems: "center",
               padding: "10px",
               width: "100%",
+              height: "100%",
               alignContent: "center",
             }}
           >
@@ -52,7 +53,7 @@ export default function NavigationBar() {
               spacing={2}
             >
               <Grid
-                size={2}
+                size={{ xs: 1, md: 2 }}
                 style={{
                   display: "flex",
                   height: "100%",
@@ -80,19 +81,22 @@ export default function NavigationBar() {
                   height: "100%",
                   alignItems: "center",
                 }}
-                size={8}
+                size={{ xs: 10, md: 8 }}
               >
                 <Typography
-                  variant="h4"
+                  variant="h3"
                   component="div"
                   style={{ fontFamily: "poppins" }}
-                  sx={{ flexGrow: 1 }}
+                  sx={{
+                    flexGrow: 1,
+                    fontSize: { xs: "30px", md: "40px" },
+                  }}
                 >
                   Match The Drink
                 </Typography>{" "}
               </Grid>
               <Grid
-                size={2}
+                size={{ xs: 1, md: 2 }}
                 style={{
                   display: "flex",
                   height: "100%",
@@ -100,7 +104,7 @@ export default function NavigationBar() {
                   justifyContent: "end",
                 }}
               >
-                <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                <Box sx={{ display: { xs: "none", md: "block" } }}>
                   <a
                     className="buyButton"
                     target="_blank"
@@ -113,7 +117,7 @@ export default function NavigationBar() {
                     />
                   </a>{" "}
                 </Box>
-                <Box sx={{ display: { xs: "block", sm: "none" } }}>
+                <Box sx={{ display: { xs: "block", md: "none" } }}>
                   <a
                     className="buyButton"
                     target="_blank"
