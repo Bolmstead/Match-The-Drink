@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../App";
 import Button from "@mui/material/Button";
 import Key from "./Key";
+import CelebrationIcon from "@mui/icons-material/Celebration";
 
 const GameOverPopup = () => {
   const { gameOver, correctDrinkOrder } = useContext(AppContext);
@@ -46,10 +47,16 @@ const GameOverPopup = () => {
         {" "}
         <span style={{ marginBottom: "30px" }}>
           {" "}
-          {gameOver.won ? "You Won! 🎉" : "You Lost!"}
+          {gameOver.won ? "You Won!" : "You Lost!"}
         </span>
-        <span style={{ fontSize: "35px" }}>Correct Order:</span>
-        <div className="winning-order">{correctDrinkOrder}</div>
+        {gameOver.won ? (
+          "🎉🎉🎉🎉🎉"
+        ) : (
+          <span style={{ fontSize: "35px" }}>Correct Order:</span>
+        )}
+        {gameOver.won ? null : (
+          <div className="winning-order">{correctDrinkOrder}</div>
+        )}
         <Button
           variant="contained"
           onClick={refreshPage}
