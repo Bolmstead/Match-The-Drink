@@ -33,7 +33,7 @@ const GameOverPopup = () => {
     >
       <div
         style={{
-          fontSize: "6rem",
+          fontSize: "4rem",
           color: "white",
           fontWeight: "bold",
           display: "flex",
